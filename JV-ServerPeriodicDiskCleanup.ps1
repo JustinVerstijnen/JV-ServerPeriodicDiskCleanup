@@ -11,9 +11,6 @@ Write-Host "     _           _   _        __     __            _   _  _
 
 # === PARAMETERS ===
 $logFile = Join-Path -Path $PSScriptRoot -ChildPath "JV-ServerPeriodicDiskCleanup-Log_$(Get-Date -Format dd-MM-yyyy).txt"
-$TimeZoneToSet = "W. Europe Standard Time"  # Example: Amsterdam (UTC+1/UTC+2 DST)
-$culture = "nl-NL"
-$geoid = "176" #  Check this page: https://learn.microsoft.com/en-us/windows/win32/intl/table-of-geographical-locations
 
 # === END PARAMETERS ===
 
@@ -82,7 +79,7 @@ Get-ChildItem $regPath | ForEach-Object {
 
 Trim-LogFile -logFilePath $logFile
 Log-DiskSpace -logFilePath $logFile -label "Before Cleanmgr"
-$maxDuration = 1800  # in seconden (30 minuten)
+$maxDuration = 1800
 $attempts = 0
 $maxAttempts = 2
 while ($attempts -lt $maxAttempts) {
